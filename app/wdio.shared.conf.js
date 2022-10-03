@@ -1,7 +1,10 @@
+ 
 /* eslint-disable no-unused-vars, max-len */
 const path = require('path')
 
 exports.config = {
+
+   
   // ==================
   // Specify Test Files
   // ==================
@@ -11,7 +14,7 @@ exports.config = {
   // directory is where your package.json resides, so `wdio` will be called from there.
   //
   specs: [
-    path.join(__dirname, '/tests/e2e/**/*.spec.js')
+    path.join(__dirname, '/tests/e2e/app/**/*.spec.js')
   ],
   // Patterns to exclude.
   exclude: [
@@ -46,7 +49,7 @@ exports.config = {
   framework: 'mocha',
   //
   // The number of times to retry the entire specfile when it fails as a whole
-  specFileRetries: 1,
+  specFileRetries: 0,
   //
   // Retried specfiles are inserted at the beginning of the queue and retried immediately
   specFileRetriesDeferred: false,
