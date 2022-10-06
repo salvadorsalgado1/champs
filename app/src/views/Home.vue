@@ -1,7 +1,9 @@
 <template>
 <div class="home container">
   <h1>Home</h1>
-  <div class="card text-bg-dark mb-3" style="max-width: 18rem;">
+  <IntroCard :current="this.getTimePeriod()"/>
+
+<div class="card text-bg-dark mb-3" style="max-width: 18rem;">
   <div class="card-header">Header</div>
   <div class="card-body">
     <h5 class="card-title">Dark card title</h5>
@@ -12,23 +14,28 @@
 </template>
 
 <script>
+import IntroCard from '../components/IntroCard.vue'
 import axios from 'axios'
 export default {
+  components:{IntroCard},
+  methods:{
+    getTimePeriod(){
+      let greeting="";
+      let time = new Date(); 
+      let hour = time.getHours() 
+      if(hour < 11){
+        return greeting="Good Morning"
+      }else if(hour > 11 && hour < 4){
+        return greeting="Good Afternoon"
+      }else{
+        return greeting="Good Evening"
+      }
+    }
+  },
 mounted(){
-  const options = {
-  method: 'GET',
-  url: 'https://sportspage-feeds.p.rapidapi.com/games',
-  headers: {
-    'X-RapidAPI-Key': 'b531c9d465msh05a33a32e9fd8dfp1e55b9jsnf81864f81182',
-    'X-RapidAPI-Host': 'sportspage-feeds.p.rapidapi.com'
-  }
-};
-
-axios.request(options).then(function (response) {
-	console.log(response.data);
-}).catch(function (error) {
-	console.error(error);
-});
+   
+  this.getTimePeriod();
+   
 }
 }
 </script>
